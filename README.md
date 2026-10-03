@@ -12,3 +12,4 @@ Desafio técnico desenvolvido em C# com .NET 8.
 
 ```bash
 dotnet run --project ./src/DesafioTarget
+```
