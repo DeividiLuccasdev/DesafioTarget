@@ -21,6 +21,13 @@ public class EstoqueService
         }
         else if (tipo.Equals("saida", StringComparison.OrdinalIgnoreCase))
         {
+            if (quantidade > produto.Estoque)
+            {
+                throw new ArgumentException(
+                    $"Estoque insuficiente. Disponível: {produto.Estoque}."
+                );
+            }
+
             produto.Estoque -= quantidade;
             movimentacao.Descricao = "Saída de mercadoria";
         }
