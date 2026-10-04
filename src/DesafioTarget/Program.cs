@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using DesafioTarget.Models;
 using DesafioTarget.Services;
+using System.Globalization;
 
 // ============================
 // EXERCÍCIO 1 - COMISSÕES
@@ -152,7 +153,13 @@ Console.WriteLine();
 Console.Write("Informe o valor: R$ ");
 var valorTexto = Console.ReadLine();
 
-if (!decimal.TryParse(valorTexto, out var valor))
+var culturaBrasileira = new CultureInfo("pt-BR");
+
+if (!decimal.TryParse(
+        valorTexto,
+        NumberStyles.Number,
+        culturaBrasileira,
+        out var valor))
 {
     Console.WriteLine("Valor inválido.");
     return;
@@ -161,7 +168,12 @@ if (!decimal.TryParse(valorTexto, out var valor))
 Console.Write("Informe a data de vencimento (dd/mm/aaaa): ");
 var dataTexto = Console.ReadLine();
 
-if (!DateTime.TryParse(dataTexto, out var dataVencimento))
+if (!DateTime.TryParseExact(
+        dataTexto,
+        "dd/MM/yyyy",
+        CultureInfo.InvariantCulture,
+        DateTimeStyles.None,
+        out var dataVencimento))
 {
     Console.WriteLine("Data inválida.");
     return;
